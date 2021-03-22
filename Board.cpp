@@ -8,7 +8,7 @@ namespace ariel {
         delete chars;
     }
 
-    void Board::post(uint row, uint column, Direction direction, std::string message) {
+    void Board::post(uint row, uint column, Direction direction, const std::string& massage) {
 
     }
 

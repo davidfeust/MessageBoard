@@ -11,7 +11,7 @@ namespace ariel {
 
         ~Board();
 
-        void post(uint row, uint column, Direction direction, std::string message);
+        void post(uint row, uint column, Direction direction, const std::string& massage);
 
         std::string read(unsigned int row, unsigned int column, Direction direction, uint length);
 
