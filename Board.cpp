@@ -4,16 +4,9 @@
 
 namespace ariel {
 
-    Board::Board() : board(std::vector<std::vector<char>>()), rows(0), cols(0) {
-//        resize_board(5, 5);
-    }
+    Board::Board() : board(std::vector<std::vector<char>>()), rows(0), cols(0) {}
 
-    Board::~Board() {
-//        delete board;
-//        for (int i = 0; i < board.size(); ++i) {
-//            delete board.at(i).;
-//        }
-    }
+    Board::~Board() = default;
 
     void Board::post(uint row, uint column, Direction direction, const std::string &massage) {
         uint index = 0;
@@ -44,14 +37,16 @@ namespace ariel {
     }
 
     std::string Board::read(uint row, uint column, Direction direction, uint length) {
-        std::string ans = "";
+        std::string ans;
         if (direction == Direction::Horizontal) {
             if (row >= rows) {
-                ans = (length, '_');
+                std::string temp(length, '_');
+                ans = temp;
             } else {
-                for (int i = column; i < column + length; ++i) {
+                for (uint i = column; i < column + length; ++i) {
                     if (i < cols) {
-                        ans += board.at(row).at(i);
+                        char &cell = board.at(row).at(i);
+                        ans += cell != 0 ? cell : '_';
                     } else {
                         ans += '_';
                     }
@@ -59,11 +54,13 @@ namespace ariel {
             }
         } else { // Direction::Vertical
             if (column >= cols) {
-                ans = (length, '_');
+                std::string temp(length, '_');
+                ans = temp;
             } else {
-                for (int i = row; i < row + length; ++i) {
+                for (uint i = row; i < row + length; ++i) {
                     if (i < rows) {
-                        ans += board.at(i).at(column);
+                        char &cell = board.at(i).at(column);
+                        ans += cell != 0 ? cell : '_';
                     } else {
                         ans += '_';
                     }
@@ -78,7 +75,7 @@ namespace ariel {
         for (uint i = 0; i < board.size(); ++i) {
             for (uint j = 0; j < board.at(i).size(); ++j) {
                 char &cell = board.at(i).at(j);
-                if (!cell) {
+                if (cell == 0) {
                     std::cout << '_';
                 } else {
                     std::cout << cell;
@@ -97,5 +94,4 @@ namespace ariel {
         rows = new_rows;
         cols = new_cols;
     }
-
 }

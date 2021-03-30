@@ -6,16 +6,12 @@
 namespace ariel {
     class Board {
 
-//        std::array<std::array<char, rows>, cols> a;
-//        char **chars;
-
     private:
         std::vector<std::vector<char>> board;
         uint rows;
         uint cols;
 
         void resize_board(uint new_rows, uint new_cols);
-
 
     public:
         Board();
