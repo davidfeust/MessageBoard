@@ -6,13 +6,16 @@
 namespace ariel {
     class Board {
 
-//        uint rows;
-//        uint cols;
-//        char **chars;
 //        std::array<std::array<char, rows>, cols> a;
+//        char **chars;
 
     private:
         std::vector<std::vector<char>> board;
+        uint rows;
+        uint cols;
+
+        void resize_board(uint new_rows, uint new_cols);
+
 
     public:
         Board();
@@ -24,5 +27,6 @@ namespace ariel {
         std::string read(unsigned int row, unsigned int column, Direction direction, uint length);
 
         void show();
+
     };
 }
